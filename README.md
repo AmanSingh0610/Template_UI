@@ -8,4 +8,6 @@ Installation Steps:
     >pip install -r requirements.txt
     
 3. Run the Django Server
-   > python manage.py runserver
+   > Goto: Template_UI > Document_Classifier
+  
+   > RUN: python manage.py runserver
