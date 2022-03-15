@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Classifier</title>
+    <script src="https://kit.fontawesome.com/4044268fc7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/styleindex.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/floatingbutton.css' %}"/>
+</head>
+<body>
+    <header>
+    </header>
+    <div class="frame">
+        <div class="bar">
+        <img src="https://imgur.com/9Q7Icce.png" class="logo1">
+        </div>
+        <div class="left">
+            <div class="title">
+                <h1 class="select">Select / Drop Document to upload</h1>
+            </div>
+            <form action="/index/" method="POST" enctype="multipart/form-data" class="upload-form">
+                {% csrf_token %}
+                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                <input type="file" name="file1" id="file1" class="upload-input" />
+                <button type="submit" class="btn" name="detectbutton">Detect Sign</button>   
+            </form>
+        </div>
+
+        <div class="right">
+            <img class="imgmain" src="https://imgur.com/FX9WAiH.png" alt='imagename'>
+            <h1 class="head"> Detected Document Type</h1>
+             
+        </div>
+        <div class="presentation">Click Here to View History <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+        <nav class="float-action-button">
+            <a href='/history/' class="buttons" title="history">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </nav>
+    </div>
+
+</body>
+
+                

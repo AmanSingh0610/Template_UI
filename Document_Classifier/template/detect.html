@@ -1,0 +1,86 @@
+<!---{% load static %}-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Classifier</title>
+    <script src="https://kit.fontawesome.com/4044268fc7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/styledetect.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/floatingbutton.css' %}"/>
+    
+</head>
+<body>  
+<header>
+</header>
+
+<div class="frame">
+    <div class="bar">
+        <img src="https://imgur.com/9Q7Icce.png" class="logo1">
+    </div>
+    <div class="left">
+        <div class="title">
+            <h1 class="head">Select / Drop Document to upload</h1>
+        </div>
+        <form action="/index/" method="POST" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                <input type="file" name="file1" id="file1" class="upload-input" />
+                <button type="submit" class="btn" name="detectbutton">Detect Class</button>   
+        </form>
+    </div>
+    <div class="right">
+        <h1 class="head">Document Details</h1>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">DDT Confidence Score:  </h4>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+			<div class="container chart" data-size="200" data-value={{current_result.confidence}} data-arrow="up"></div>
+		</div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Document Type: MSA  </h4>
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title" data-toggle="collapse" href="#collapse1">Keywords Detected <i class="fa-solid fa-angles-down"></i></h4>  
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <h4>
+                            {% for i in current_result.keywords %}
+                                {{i}},  
+                            {% endfor %}
+                        </h4>
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title">DDT Classification: +ve  </h4>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="presentation">Click Here to View History <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+        <nav class="float-action-button">
+            <a href='/history/' class="buttons" title="history">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </nav>
+</div>
+</body>
+</html>
+<script src="{% static 'javascript/percentage.js' %}" type="text/javascript"></script> 
+                

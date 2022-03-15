@@ -1,0 +1,194 @@
+.frame {
+    position: absolute;
+    width: 99%;
+    height: 98%;
+    border-radius: 2px;
+    box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: #333;
+    font-family: "Open Sans", Helvetica, sans-serif;
+    background-color: #242f41;
+    opacity: 0.9;
+
+}
+.left {
+    position: absolute;
+    padding: 5px;
+    top: 57%;
+    left: 29%;
+    transform: translate(-50%, -50%);
+    width: 405px;
+    height: 650px;
+    border-radius: 20px;
+    box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+    background: #010613;
+    align-items: center;
+    display:block;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.right {
+    position: absolute;
+    top: 57%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+    width: 405px;
+    height: 650px;
+    border-radius: 20px;
+    box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+    background: #010613;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+
+}
+
+.title {
+    margin-top:10%;
+    margin-left: 8%;
+    margin-bottom: 10px;
+    width: 80%;
+    border-bottom: 1px solid #999;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 300;
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: black;   
+}
+
+.upload-form {
+    margin-top:10%;
+    margin-left: 20%;
+    width: 230px;
+    height: 200px;
+    border: 1px dashed #999;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.app {
+    width: 100%;
+    height: 30px;
+    padding-top: 0.7%;
+    text-align: center;
+    font-size: 2.9em;
+    font-weight: bold;
+    color: black;
+}
+
+.dropzone {
+    width: 100px;
+    height: 80px;
+    border: 1px dashed #999;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.upload-icon {
+    
+    height: 180px;
+    width: 180px;
+    margin-left: -2%;
+}
+
+.upload-input {
+    position: block;
+    top: 100px;
+    left: 5000px;
+    margin: 5px;
+    opacity: 0;
+   
+}
+
+.btn {
+    position: absolute;
+    top: 450px;
+    left: 53px;
+    width: 300px;
+    height: 80px;
+    background: #444cf777;
+    color: #fff;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: 0 3px 0 0 rgb(119, 4, 252);
+    transition: all 0.3s ease-in-out;
+    font-size: 32px;
+}
+
+.btn:hover {
+    background: rgb(53, 29, 75);
+    box-shadow: 0 3px 0 0 rgb(211, 214, 216);
+}
+
+.imgmain {
+    margin-top:2%; 
+    height: 320px;
+    width: 320px;
+}
+
+.head {
+
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: white;
+}
+
+.logo1 {
+    margin-left: 45%;
+    margin-top: 2%;
+    opacity: 0.9;
+    background: white;
+    height: 10%;
+    width: 12%;
+}
+.select {
+    text-align: left;
+    color:white;
+}
+
+.panel {
+    background-color: #010613;
+    border-width: 0px;
+    
+    
+}
+.panel-title {
+    color: black;
+    font-weight: bold;
+    
+}
+
+.panel-body, .panel-heading {
+    margin: 10px 20px 8px 20px; 
+}
+
+
+.panel-collapse {
+    background-color: white;
+    margin: 10px 20px 2px 20px;
+    color: black;
+}
+
+i {
+    margin-left: 50%;
+    
+}
+.wrapper {
+    
+    width: 2cm;
+    height: 2cm;
+    margin-left: 22%;
+    margin-bottom: 40%;
+}
+
+.container {
+    padding: 10px;
+    margin-bottom: 20px;
+    
+}
