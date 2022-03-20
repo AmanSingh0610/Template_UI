@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- All Imports (CSS, Bootstrap etc)-->
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}"> -->
+
+    <!-- CSS Elements for Frame, Boxes and Upload-->
     <style>
         .frame {
             position: absolute;
@@ -159,6 +165,10 @@
         .select {
             color:rgb(255, 255, 255)
         }
+    </style>
+
+    <!-- CSS Elements for View History Button-->
+    <style>
         .presentation {
             position: fixed;
             right: 88px;
@@ -251,15 +261,70 @@
         .tooltip.left {
             margin-left: -10px;
         }
-    </style> 
+    
+    </style>
+
+    <!-- CSS Elements for Loading Screen-->
+    <style>
+        .loader {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            border: 4px solid #Fff;
+            animation: loader 2s infinite ease;
+            }
+        
+        .loader-wrapper {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index:1000;
+            display: none;
+            background-color: #242f3f;
+            justify-content: center;
+            align-items: center;
+            }
+        
+        .loader-inner {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            background-color: #fff;
+            animation: loader-inner 2s infinite ease-in;
+            }
+            
+        @keyframes loader {
+            0% { transform: rotate(0deg);}
+            25% { transform: rotate(180deg);}
+            50% { transform: rotate(180deg);}
+            75% { transform: rotate(360deg);}
+            100% { transform: rotate(360deg);}
+        }
+        
+        @keyframes loader-inner {
+            0% { height: 0%;}
+            25% { height: 0%;}
+            50% { height: 100%;}
+            75% { height: 100%;}
+            100% { height: 0%;}
+        }
+    </style>
 </head>
+
+<!-- Main Code Body-->
 <body>
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
     <header>
     </header>
     <div class="frame">
         <div class="bar">
         <img src="https://imgur.com/9Q7Icce.png" class="logo1">
         </div>
+
+        <!-- Left Box-->
         <div class="left">
             <div class="title">
                 <h1 class="select">Select / Drop Document to upload</h1>
@@ -272,14 +337,17 @@
             </form>
         </div>
 
+        <!-- Right Box-->
         <div class="right">
             <img class="imgmain" src="https://imgur.com/FX9WAiH.png" alt='imagename'>
             <h1 class="head"> Detected Document Type</h1>
              
         </div>
+
+        <!-- View History Button-->
         <div class="presentation">Click Here to View History <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
         <nav class="float-action-button">
-            <a href='/history/' class="buttons" title="history">
+            <a href='/history/' class="buttons" title="history" id=buttons>
                 <i class="fa-solid fa-book"></i>
             </a>
         </nav>
@@ -287,4 +355,17 @@
 
 </body>
 
-                
+<!-- Script to View/Disable Loading Screen-->
+<script>
+    $(window).on("load",function(){
+        $('.loader-wrapper').attr('style','display: none');
+   });
+   $(window).on('popstate', function(event) {
+    $('.loader-wrapper').attr('style','display: none');
+   });
+    $(document).ready(function () {
+        $(buttons).on("click",function(){
+            $('.loader-wrapper').attr('style','display: flex');
+            });
+        });
+</script>

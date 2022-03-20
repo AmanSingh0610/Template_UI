@@ -7,10 +7,11 @@
     <script src="https://kit.fontawesome.com/4044268fc7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- CSS Elements (Unused)-->
     <style>
 
         .frame {
@@ -166,7 +167,10 @@
             text-align: left;
             color:white;
         }
-        
+    </style>
+
+    <!-- CSS Elements for List of Files-->
+    <style>
         .panel {
             background-color: #010613;
             border-width: 0px;
@@ -303,7 +307,10 @@
             max-height: 100vh;
             padding: 1em;
         }
-        
+    </style>
+
+    <!-- CSS Elements for Lines-->
+    <style>
         .hrtop{
             background-color: rgb(0, 0, 0);
             width: 100%;
@@ -318,7 +325,10 @@
             border: 0px;
         
         }
-        
+    </style>
+
+    <!--CSS Elements for Result Box-->
+    <style>
         .right2 { 
             margin-left: 2%;
             width: 410px;
@@ -353,11 +363,14 @@
     </header>
     <div class="frame">
         <div class="bar">
-        <img src="https://imgur.com/9Q7Icce.png" class="logo1">
+        <a href="/"><img src="https://imgur.com/9Q7Icce.png" class="logo1"></a>
         </div>
         <div class="history">
             <hr class="hrtop">
-            <h1 class="heading">Previous Results</h1>
+                <a href='/' class="buttons">
+                    <i class="fa fa-arrow-left"></i> Go Back
+                </a>
+            <h1 class="heading">Previous Results</h1> 
             <hr class="hrbottom">
             <div class="rows">
                 <div class="columns">
