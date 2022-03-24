@@ -9,20 +9,20 @@
     <script src="https://kit.fontawesome.com/4044268fc7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- Collapse Style for a better view  -->
+    <!-- Frame, Left and Right Boxes -->
     <style>
         .frame {
             position: absolute;
-            width: 99%;
-            height: 98%;
+            width: 100%;
+            height: 100%;
             border-radius: 2px;
             box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            color: #333;
+            color: rgb(255, 255, 255);
             font-family: "Open Sans", Helvetica, sans-serif;
             background-color: #242f41;
             opacity: 0.9;
@@ -34,14 +34,14 @@
             top: 57%;
             left: 29%;
             transform: translate(-50%, -50%);
-            width: 405px;
-            height: 650px;
+            width: 20%;
+            height: 55%;
             border-radius: 20px;
             box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
             background: #010613;
             align-items: center;
             display:block;
-            justify-content: space-evenly;
+            
             flex-direction: column;
         }
         
@@ -50,8 +50,8 @@
             top: 57%;
             right: 5%;
             transform: translate(-50%, -50%);
-            width: 405px;
-            height: 650px;
+            width: 22%;
+            height: 70%;
             border-radius: 20px;
             box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
             background: #010613;
@@ -76,70 +76,6 @@
             font-size: 2.2em;
             font-weight: bold;
             color: black;   
-        }
-        
-        .upload-form {
-            margin-top:10%;
-            margin-left: 20%;
-            width: 230px;
-            height: 200px;
-            border: 1px dashed #999;
-            border-radius: 3px;
-            text-align: center;
-        }
-        
-        .app {
-            width: 100%;
-            height: 30px;
-            padding-top: 0.7%;
-            text-align: center;
-            font-size: 2.9em;
-            font-weight: bold;
-            color: black;
-        }
-        
-        .dropzone {
-            width: 100px;
-            height: 80px;
-            border: 1px dashed #999;
-            border-radius: 3px;
-            text-align: center;
-        }
-        
-        .upload-icon {
-            
-            height: 180px;
-            width: 180px;
-            margin-left: -2%;
-        }
-        
-        .upload-input {
-            position: block;
-            top: 100px;
-            left: 5000px;
-            margin: 5px;
-            opacity: 0;
-           
-        }
-        
-        .btn {
-            position: absolute;
-            top: 450px;
-            left: 53px;
-            width: 300px;
-            height: 80px;
-            background: #444cf777;
-            color: #fff;
-            border-radius: 3px;
-            border: 0;
-            box-shadow: 0 3px 0 0 rgb(119, 4, 252);
-            transition: all 0.3s ease-in-out;
-            font-size: 32px;
-        }
-        
-        .btn:hover {
-            background: rgb(53, 29, 75);
-            box-shadow: 0 3px 0 0 rgb(211, 214, 216);
         }
         
         .imgmain {
@@ -168,7 +104,10 @@
             text-align: left;
             color:white;
         }
-        
+    </style> 
+ 
+    <!-- Right Side Box Panels -->
+    <style>
         .panel {
             background-color: #010613;
             border-width: 0px;
@@ -209,13 +148,76 @@
             margin-bottom: 20px;
             
         }
-        .presentation {
-            position: fixed;
-            right: 88px;
-            bottom: 34px;
-            color: white;
-            text-shadow: 1px 1px 1px #000;
+    </style>
+
+    <!-- Radio Buttons -->
+    <style>
+        .radio-buttons {
+            margin-left: 20%;
+            margin-top: 5%;
         }
+        .form-check-inline {
+            display: inline;
+            justify-content: space-evenly;
+            flex-direction: column;
+            margin: 2%;
+            font-size: 1.2em;
+        } 
+    </style>
+
+    <!-- Upload Area -->
+    <style>
+        h5 {
+            text-align: center;
+            margin: 10% 0% 10% 0%;
+            color: rgb(250, 248, 248);
+        }
+
+        #upload-form {
+            margin-top:10%;
+            margin-left: 21%;
+            width: 60%;
+            height: 100%;
+            border: 1px dashed #999;
+            border-radius: 3px;
+            text-align: center;
+        }
+        
+        .upload-icon {
+            
+            height: 100%;
+            width: 100%;
+            margin-top: 10%;
+            margin-left: -2%;
+        }
+        
+        #file1 {
+            display: none;
+        }
+        
+        .btn {
+            position: absolute;
+            top: 79%;
+            left: 15%;
+            width: 72%;
+            height: 12%;
+            background: #444cf777;
+            color: #fff;
+            border-radius: 3px;
+            border: 0;
+            box-shadow: 0 3px 0 0 rgb(119, 4, 252);
+            transition: all 0.3s ease-in-out;
+            font-size: 32px;
+        }
+        
+        .btn:hover {
+            background: rgb(24, 3, 44);
+            box-shadow: 0 3px 0 0 rgb(211, 214, 216);
+        }
+    </style>
+
+    <!-- CSS Elements for View History Button -->
+    <style>
         
         /* menu */
         nav.float-action-button {
@@ -232,46 +234,15 @@
             height: 60px;
             color: #fff;
             font-size: 2.6em;
-            padding: 12px 0 0 0;
+            padding: 8% 50% 0 0;
             text-align: center;
             display: block;
-            margin: 20px auto 0;
+            margin: 0 0 0 0;
             position: relative;
             -webkit-transition: all .1s ease-out;
             transition: all .1s ease-out;
         }
         
-        a.buttons:active,
-        a.buttons:focus,
-        a.buttons:hover {
-            box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
-            text-decoration: none;
-        }
-        
-        a.buttons:not(:last-child) {
-            width: 40px;
-            height: 40px;
-            margin: 20px auto 0;
-            opacity: 0;
-            font-size: 1.6em;
-            padding-top: 4px;
-            -webkit-transform: translateY(50px);
-            -ms-transform: translateY(50px);
-            transform: translateY(50px);
-        }
-        
-        a.buttons.main-button > i:first-child {
-            position: relative;
-            margin-top: 10px;
-        }
-        
-        nav.float-action-button:hover a.buttons:not(:last-child) {
-            opacity: 1;
-            -webkit-transform: none;
-            -ms-transform: none;
-            transform: none;
-            margin: 20px auto 0;
-        }
         
         a.buttons:nth-last-child(1) {
             -webkit-transition-delay: 25ms;
@@ -280,33 +251,62 @@
             /* Button color */
         }
         
-        
-        a.buttons:nth-last-child(1) i.fa:nth-last-child(1) {
-            position: absolute;
-            margin: 10px 0 0 -32px;
-        }
-        
-        
-        a.buttons:nth-last-child(1):hover i.fa:nth-last-child(2) {
-            opacity: 1;
-        }
-        
-        a.buttons:not(:last-child):nth-last-child(4) {
-            -webkit-transition-delay: 100ms;
-            transition-delay: 60ms;
-            background-color: #dd4b39;
-            /* Google plus color */
-        }
-        
-        .tooltip.left {
-            margin-left: -10px;
-        }
+      
+    
+    </style>
 
-    </style> 
- 
+    <!-- CSS Elements for Loading Screen -->
+    <style>
+        .loader {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            border: 4px solid #Fff;
+            animation: loader 2s infinite ease;
+            }
+        
+        .loader-wrapper {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index:1000;
+            display: flex;
+            background-color: #242f3f;
+            justify-content: center;
+            align-items: center;
+            }
+        
+        .loader-inner {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            background-color: #fff;
+            animation: loader-inner 2s infinite ease-in;
+            }
+            
+        @keyframes loader {
+            0% { transform: rotate(0deg);}
+            25% { transform: rotate(180deg);}
+            50% { transform: rotate(180deg);}
+            75% { transform: rotate(360deg);}
+            100% { transform: rotate(360deg);}
+        }
+        
+        @keyframes loader-inner {
+            0% { height: 0%;}
+            25% { height: 0%;}
+            50% { height: 100%;}
+            75% { height: 100%;}
+            100% { height: 0%;}
+        }
+    </style>
     
 </head>
-<body>  
+<body>
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>  
 <header>
 </header>
 
@@ -318,11 +318,30 @@
         <div class="title">
             <h1 class="head">Select / Drop Document to upload</h1>
         </div>
-        <form action="/index/" method="POST" enctype="multipart/form-data" class="upload-form">
+        <form action="/index/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-                <input type="file" name="file1" id="file1" class="upload-input" />
-                <button type="submit" class="btn" name="detectbutton">Detect Class</button>   
+            <div class="radio-buttons">
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="doctype" id="pdf" value="pdf">
+                    <label for="pdf" class="form-check-label"> PDF
+                </div>
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="doctype" id="docx" value="docx">
+                    <label for="docx" class="form-check-label"> Docx
+                </div>
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="doctype" id="text" value="text">
+                    <label for="text" class="form-check-label"> Text File
+                </div>
+            </div>
+            <div id="upload-form">
+                <label for="file1"> 
+                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
+                    <h5>Click here to Upload</h5>
+                </label>
+                <input type="file" name="file1" id="file1" class="upload-input">
+            </div>
+            <button type="submit" class="btn" name="detectbutton" id=btn>Detect Document</button>   
         </form>
     </div>
     <div class="right">
@@ -361,12 +380,11 @@
         </div>
         
     </div>
-    <div class="presentation">Click Here to View History <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
-        <nav class="float-action-button">
-            <a href='/history/' class="buttons" title="history">
-                <i class="fa-solid fa-book"></i>
-            </a>
-        </nav>
+    <nav class="float-action-button">
+        <a href='/history/' class="buttons" title="history" id=buttons>
+            <i class="fa-solid fa-book"></i>
+        </a>
+    </nav>
 </div>
 </body>
 </html>
@@ -550,4 +568,35 @@
     var dial = new Dial(containers[0]);
     dial.animateStart();
 </script> 
-                
+<!-- Script to View/Disable Loading Screen-->
+<script>
+    $(window).on("load",function(){
+        $('.loader-wrapper').attr('style','display: none');
+   });
+   $(document).ready(function () {
+    $(btn).on("click",function(){
+        $('.loader-wrapper').attr('style','display: flex');
+        });
+    });
+    $(document).ready(function () {
+        $(buttons).on("click",function(){
+            $('.loader-wrapper').attr('style','display: flex');
+            });
+        });
+</script>
+<script>
+    $(document).ready(function (){
+        validate();
+        $('.form-check-input, .upload-input').change(validate);
+    });
+    
+    function validate(){
+        if ($('.form-check-input').val().length > 0 && $('.upload-input').val().length > 0)
+        {
+            $(btn).prop("disabled", false);
+        }
+        else {
+            $(btn).prop("disabled", true);
+        }
+    }
+</script>              

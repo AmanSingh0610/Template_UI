@@ -9,21 +9,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}"> -->
 
-    <!-- CSS Elements for Frame, Boxes and Upload-->
+    <!-- CSS Elements for Frame, Boxes-->
     <style>
+        body {
+            overflow: auto;
+            
+        }
         .frame {
             position: absolute;
-            width: 99%;
-            height: 98%;
-            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            border-radius: 2px;
+            border-color: black;
             border-radius: 2px;
             border-color: black;
             box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
-            color: #333;
+            color: rgb(255, 255, 255);
             font-family: "Open Sans", Helvetica, sans-serif;
             opacity: 0.9;
             background-color: #19263b;
@@ -34,8 +41,8 @@
             top: 57%;
             left: 29%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 570px;
+            width: 21%;
+            height: 60%;
             border-radius: 20px;
             box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
             background: #010613;
@@ -50,8 +57,8 @@
             top: 57%;
             right: 5%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 570px;
+            width: 21%;
+            height: 60%;
             border-radius: 20px;
             box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
             background: #010613;
@@ -63,7 +70,7 @@
         .title {
             margin-top:10%;
             margin-left: 8%;
-            margin-bottom: 10px;
+            margin-bottom: 2%;
             width: 80%;
             border-bottom: 1px solid #999;
             text-align: center;
@@ -77,74 +84,10 @@
             color: black;   
         }
         
-        .upload-form {
-            margin-top:10%;
-            margin-left: 20%;
-            width: 230px;
-            height: 200px;
-            border: 1px dashed #999;
-            border-radius: 3px;
-            text-align: center;
-        }
-        
-        .app {
-            width: 100%;
-            height: 30px;
-            padding-top: 0.7%;
-            text-align: center;
-            font-size: 2.9em;
-            font-weight: bold;
-            color: black;
-        }
-        
-        .dropzone {
-            width: 100px;
-            height: 80px;
-            border: 1px dashed #999;
-            border-radius: 3px;
-            text-align: center;
-        }
-        
-        .upload-icon {
-            
-            height: 180px;
-            width: 180px;
-            margin-left: -2%;
-        }
-        
-        .upload-input {
-            position: block;
-            top: 100px;
-            left: 5000px;
-            margin: 5px;
-            opacity: 0;
-           
-        }
-        
-        .btn {
-            position: absolute;
-            top: 450px;
-            left: 53px;
-            width: 300px;
-            height: 80px;
-            background: #444cf777;
-            color: #fff;
-            border-radius: 3px;
-            border: 0;
-            box-shadow: 0 3px 0 0 rgb(119, 4, 252);
-            transition: all 0.3s ease-in-out;
-            font-size: 32px;
-        }
-        
-        .btn:hover {
-            background: rgb(24, 3, 44);
-            box-shadow: 0 3px 0 0 rgb(211, 214, 216);
-        }
-        
         .imgmain {
             margin-top:20%; 
-            height: 320px;
-            width: 320px;
+            height: 60%;
+            width: 80%;
         }
         
         .head {
@@ -164,6 +107,66 @@
         }
         .select {
             color:rgb(255, 255, 255)
+        }
+    </style>
+
+    <!-- Radio Buttons -->
+    <style>
+        .radio-buttons {
+            margin-left: 20%;
+            margin-top: 5%;
+        }
+    </style>
+
+    <!-- Upload Area -->
+    <style>
+        h5 {
+            text-align: center;
+            margin: 10% 0% 10% 0%;
+            color: rgb(250, 248, 248);
+        }
+
+        .upload-form {
+            margin-top:5%;
+            margin-left: 21%;
+            width: 60%;
+            height: 100%;
+            border: 1px dashed #999;
+            border-radius: 3px;
+            text-align: center;
+        }
+        
+        .upload-icon {
+            
+            height: 100%;
+            width: 100%;
+            margin-top: 10%;
+            margin-left: -2%;
+        }
+        
+        .upload-input {
+            display: none;
+        
+        }
+        
+        .btn {
+            position: absolute;
+            top: 79%;
+            left: 15%;
+            width: 72%;
+            height: 12%;
+            background: #444cf777;
+            color: #fff;
+            border-radius: 3px;
+            border: 0;
+            box-shadow: 0 3px 0 0 rgb(119, 4, 252);
+            transition: all 0.3s ease-in-out;
+            font-size: 32px;
+        }
+        
+        .btn:hover {
+            background: rgb(24, 3, 44);
+            box-shadow: 0 3px 0 0 rgb(211, 214, 216);
         }
     </style>
 
@@ -192,7 +195,7 @@
             height: 60px;
             color: #fff;
             font-size: 2.6em;
-            padding: 12px 0 0 0;
+            padding: 0 0 0 0;
             text-align: center;
             display: block;
             margin: 20px auto 0;
@@ -201,61 +204,12 @@
             transition: all .1s ease-out;
         }
         
-        a.buttons:active,
-        a.buttons:focus,
-        a.buttons:hover {
-            box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
-            text-decoration: none;
-        }
-        
-        a.buttons:not(:last-child) {
-            width: 40px;
-            height: 40px;
-            margin: 20px auto 0;
-            opacity: 0;
-            font-size: 1.6em;
-            padding-top: 4px;
-            -webkit-transform: translateY(50px);
-            -ms-transform: translateY(50px);
-            transform: translateY(50px);
-        }
-        
-        a.buttons.main-button > i:first-child {
-            position: relative;
-            margin-top: 10px;
-        }
-        
-        nav.float-action-button:hover a.buttons:not(:last-child) {
-            opacity: 1;
-            -webkit-transform: none;
-            -ms-transform: none;
-            transform: none;
-            margin: 20px auto 0;
-        }
         
         a.buttons:nth-last-child(1) {
             -webkit-transition-delay: 25ms;
             transition-delay: 25ms;
             background-color: #D32F2F;
             /* Button color */
-        }
-        
-        
-        a.buttons:nth-last-child(1) i.fa:nth-last-child(1) {
-            position: absolute;
-            margin: 10px 0 0 -32px;
-        }
-        
-        
-        a.buttons:nth-last-child(1):hover i.fa:nth-last-child(2) {
-            opacity: 1;
-        }
-        
-        a.buttons:not(:last-child):nth-last-child(4) {
-            -webkit-transition-delay: 100ms;
-            transition-delay: 60ms;
-            background-color: #dd4b39;
-            /* Google plus color */
         }
         
         .tooltip.left {
@@ -280,7 +234,7 @@
             height: 100%;
             position: fixed;
             z-index:1000;
-            display: none;
+            display: flex;
             background-color: #242f3f;
             justify-content: center;
             align-items: center;
@@ -329,11 +283,30 @@
             <div class="title">
                 <h1 class="select">Select / Drop Document to upload</h1>
             </div>
-            <form action="/index/" method="POST" enctype="multipart/form-data" class="upload-form">
+            <form action="/index/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-                <input type="file" name="file1" id="file1" class="upload-input" />
-                <button type="submit" class="btn" name="detectbutton">Detect Sign</button>   
+                <div class="radio-buttons">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="doctype" id="pdf" value="pdf">
+                        <label for="pdf" class="form-check-label"> PDF
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="doctype" id="docx" value="docx">
+                        <label for="docx" class="form-check-label"> Docx
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="doctype" id="text" value="text">
+                        <label for="text" class="form-check-label"> Text File
+                    </div>
+                </div>
+                <div class="upload-form">
+                    <label for="file1"> 
+                        <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
+                        <h5>Click here to Upload</h5>
+                    </label>
+                    <input type="file" name="file1" id="file1" class="upload-input">
+                </div>
+                <button type="submit" class="btn" name="detectbutton" id=btn >Detect Document</button>   
             </form>
         </div>
 
@@ -360,12 +333,30 @@
     $(window).on("load",function(){
         $('.loader-wrapper').attr('style','display: none');
    });
-   $(window).on('popstate', function(event) {
-    $('.loader-wrapper').attr('style','display: none');
-   });
+   $(document).ready(function () {
+    $(btn).on("click",function(){
+        $('.loader-wrapper').attr('style','display: flex');
+        });
+    });
     $(document).ready(function () {
         $(buttons).on("click",function(){
             $('.loader-wrapper').attr('style','display: flex');
             });
         });
+</script>
+<script>
+    $(document).ready(function (){
+        validate();
+        $('.form-check-input, .upload-input').change(validate);
+    });
+    
+    function validate(){
+        if ($('.form-check-input').val().length > 0 && $('.upload-input').val().length > 0)
+        {
+            $(btn).prop("disabled", false);
+        }
+        else {
+            $(btn).prop("disabled", true);
+        }
+    }
 </script>

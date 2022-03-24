@@ -6,6 +6,7 @@ from .models import Results
 from django.views import View
 # Imports.
 import numpy
+import docx
 import tensorflow as tf
 import pickle
 from tensorflow import keras
@@ -14,10 +15,10 @@ from keras.models import load_model
 from keras.preprocessing import text, sequence
 import pandas, numpy, string
 import nltk
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+#nltk.download('stopwords')
+#nltk.download('punkt')
+#nltk.download('wordnet')
+#nltk.download('omw-1.4')
 import os
 import re, unidecode
 from bs4 import BeautifulSoup
@@ -324,28 +325,16 @@ def perform_preprocessing(text):
     text = remove_whitespace(text)
     return text
 
-def handlingpdf(testfile,maxlen):
-    file = pdfplumber.open(testfile)
-    text = ' '.join([page.extract_text() for page in file.pages])
-    inp = [perform_preprocessing(text)]
-    inp_token = tokenizer.texts_to_sequences(inp)
-    inp_token = sequence.pad_sequences(inp_token, padding='post', maxlen=maxlen)
-    out = final_model.predict(inp_token)
-    predicted_label = numpy.argmax(out) 
-    return predicted_label
 
-def handlingtxt(testfile,maxlen):
-    with open(testfile,'r',encoding = 'utf-8') as f:
-                inp = f.read()
+def prediction(text,maxlen):
     #inp = [perform_preprocessing(x) for x in inp]
     #inp_token = tokenizer.texts_to_sequences(inp)
-    inp = [perform_preprocessing(inp)]
+    inp = [perform_preprocessing(text)]
     inp_token = tokenizer.texts_to_sequences(inp)
     inp_token = sequence.pad_sequences(inp_token, padding='post', maxlen=maxlen)
     out = final_model.predict(inp_token)
     predicted_label = numpy.argmax(out)
     return predicted_label
-    
 
 class Start(View):
     def get(self, request):
@@ -380,7 +369,12 @@ class Index(View):
             dic_typeof = {0:'MSA',1:'SOW',2:'RFP'}
             maxlen = 300
             confidence = 92
-            ispdf = False
+            for i in request.POST:
+                print(i)
+                if i == 'csrfmiddlewaretoken':
+                    continue
+                if i == 'doctype':
+                   doctype = request.POST['doctype']
            
         #Recieving the uploaded file and saving it in the Bucket
             fileobj=request.FILES['file1'] 
@@ -393,11 +387,22 @@ class Index(View):
             filepath = os.path.basename(fileobj.name)
             testfile='./media/'+str(fileobj.name)
 
-            if ispdf:
-                label=class_dict.get(str(handlingpdf(testfile,maxlen)))
-            else:
-                label = class_dict.get(str(handlingtxt(testfile,maxlen)))
+        #Based on File type different kind of extraction will be carried out. 
+            if doctype=='pdf':
+                file = pdfplumber.open(testfile)
+                text = ' '.join([page.extract_text() for page in file.pages])
+            elif doctype=='text':
+                with open(testfile,'r',encoding = 'utf-8') as f:
+                    text = f.read()
+            elif doctype=='docx':
+                doc = docx.Document(testfile)
+                fullText = []
+                for para in doc.paragraphs:
+                    fullText.append(para.text)
+                text = '\n'.join(fullText)
             
+            label = class_dict.get(str(prediction(text,maxlen)))
+        
             typeof = 0
             typeof = dic_typeof[typeof]
             keywords = ["data","technology","aritificial intelligence","pipeline"]
