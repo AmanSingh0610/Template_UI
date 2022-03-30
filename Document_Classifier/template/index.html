@@ -42,7 +42,7 @@
             left: 29%;
             transform: translate(-50%, -50%);
             width: 21%;
-            height: 60%;
+            height: 62%;
             border-radius: 20px;
             box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
             background: #010613;
@@ -58,7 +58,7 @@
             right: 5%;
             transform: translate(-50%, -50%);
             width: 21%;
-            height: 60%;
+            height: 62%;
             border-radius: 20px;
             box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
             background: #010613;
@@ -92,7 +92,7 @@
         
         .head {
             text-align: center;
-            font-size: 2.2em;
+            font-size: 2em;
             font-weight: bold;
             color: rgb(250, 248, 248);
         }
@@ -110,11 +110,16 @@
         }
     </style>
 
-    <!-- Radio Buttons -->
+    <!-- Radio Buttons and Switch -->
     <style>
         .radio-buttons {
             margin-left: 20%;
             margin-top: 5%;
+        }
+
+        .switch{
+            margin-top: 30%;
+            margin-left: 10%;
         }
     </style>
 
@@ -151,7 +156,7 @@
         
         .btn {
             position: absolute;
-            top: 79%;
+            top: 76%;
             left: 15%;
             width: 72%;
             height: 12%;
@@ -306,8 +311,16 @@
                     </label>
                     <input type="file" name="file1" id="file1" class="upload-input">
                 </div>
-                <button type="submit" class="btn" name="detectbutton" id=btn >Detect Document</button>   
+                <button type="submit" class="btn" name="detectbutton" id=btn >Detect Document</button>
+                <div class="switch">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="savefiles" id=savefiles>
+                        <label class="form-check-label" id="checked" for=savefiles>Save the uploaded files on Cloud</label>
+                        <label class="form-check-label" id="not_checked" for=savefiles>Don't save the uploaded files on Cloud</label>
+                    </div>   
+                </div>
             </form>
+            
         </div>
 
         <!-- Right Box-->
@@ -332,6 +345,7 @@
 <script>
     $(window).on("load",function(){
         $('.loader-wrapper').attr('style','display: none');
+        $('#checked').attr('style','display: none');
    });
    $(document).ready(function () {
     $(btn).on("click",function(){
@@ -344,6 +358,7 @@
             });
         });
 </script>
+<!-- Script to Validate Form-->
 <script>
     $(document).ready(function (){
         validate();
@@ -359,4 +374,24 @@
             $(btn).prop("disabled", true);
         }
     }
+</script>
+
+<!-- Switch Labels on off-->
+<script>
+    $(savefiles).click(function (){
+        checkboxcheck();
+        $(savefiles).change(checkboxcheck);  
+    });
+    function checkboxcheck(){
+        if ($(savefiles).is(":checked"))
+        {
+            $('#not_checked').attr('style','display: none');
+            $('#checked').attr('style','display: block');
+        }
+        else {
+            $('#checked').attr('style','display: none');
+            $('#not_checked').attr('style','display: block');
+        }
+    }
+
 </script>
