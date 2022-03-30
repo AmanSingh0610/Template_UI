@@ -41,7 +41,6 @@
             background: #010613;
             align-items: center;
             display:block;
-            
             flex-direction: column;
         }
         
@@ -163,6 +162,16 @@
             margin: 2%;
             font-size: 1.2em;
         } 
+
+        .switch{
+            margin-top: 30%;
+            margin-left: 10%;
+        }
+        .switch-inline {
+            display: inline;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
     </style>
 
     <!-- Upload Area -->
@@ -197,7 +206,7 @@
         
         .btn {
             position: absolute;
-            top: 79%;
+            top: 68%;
             left: 15%;
             width: 72%;
             height: 12%;
@@ -341,7 +350,14 @@
                 </label>
                 <input type="file" name="file1" id="file1" class="upload-input">
             </div>
-            <button type="submit" class="btn" name="detectbutton" id=btn>Detect Document</button>   
+            <button type="submit" class="btn" name="detectbutton" id=btn>Detect Document</button>
+            <div class="switch">
+                <div class="switch-inline">
+                    <input class="form-check-input" type="checkbox" name="savefiles" id=savefiles>
+                    <label class="form-check-label" id="checked" for=savefiles>Save the uploaded files on Cloud</label>
+                    <label class="form-check-label" id="not_checked" for=savefiles>Don't save the uploaded files on Cloud</label>  
+                </div>
+            </div>   
         </form>
     </div>
     <div class="right">
@@ -388,6 +404,8 @@
 </div>
 </body>
 </html>
+
+<!-- Script for Confidence Percentage Viewer-->
 <script>
     var Dial = function(container) {
         this.container = container;
@@ -568,10 +586,12 @@
     var dial = new Dial(containers[0]);
     dial.animateStart();
 </script> 
+
 <!-- Script to View/Disable Loading Screen-->
 <script>
     $(window).on("load",function(){
         $('.loader-wrapper').attr('style','display: none');
+        $('#checked').attr('style','display: none');
    });
    $(document).ready(function () {
     $(btn).on("click",function(){
@@ -584,6 +604,8 @@
             });
         });
 </script>
+
+<!-- Script to Validate Form-->
 <script>
     $(document).ready(function (){
         validate();
@@ -599,4 +621,24 @@
             $(btn).prop("disabled", true);
         }
     }
-</script>              
+</script>   
+
+<!-- Switch Labels on off-->
+<script>
+    $(savefiles).click(function (){
+        checkboxcheck();
+        $(savefiles).change(checkboxcheck);  
+    });
+    function checkboxcheck(){
+        if ($(savefiles).is(":checked"))
+        {
+            $('#not_checked').attr('style','display: none');
+            $('#checked').attr('style','display: block');
+        }
+        else {
+            $('#checked').attr('style','display: none');
+            $('#not_checked').attr('style','display: block');
+        }
+    }
+
+</script>
