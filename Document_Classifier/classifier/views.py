@@ -7,6 +7,7 @@ from django.views import View
 # Imports.
 import numpy
 import docx
+import pdfplumber
 import tensorflow as tf
 import pickle
 from tensorflow import keras
@@ -14,6 +15,7 @@ from keras import layers, models, optimizers
 from keras.models import load_model
 from keras.preprocessing import text, sequence
 import pandas, numpy, string
+import pandas as pd
 import nltk
 #nltk.download('stopwords')
 #nltk.download('punkt')
@@ -28,6 +30,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 import datetime
 import hashlib
 import hmac
@@ -36,7 +40,10 @@ from requests.utils import quote
 from Document_Classifier.settings import ibm_api_key_id,cos,cos2
 
 #final Model
-final_model = load_model('ML_model/my_model.h5')
+
+final_model = pickle.load(open('ML_model/SVM2', 'rb'))
+Tfidf_vect = pickle.load(open('ML_model/Tfidf_vect', 'rb'))
+Encoder = pickle.load(open('ML_model/Encoder', 'rb'))
 # load tokenizer
 tokenizer = text.Tokenizer()
 with open('ML_model/tokenizer.pickle', 'rb') as handle:
@@ -325,16 +332,21 @@ def perform_preprocessing(text):
     text = remove_whitespace(text)
     return text
 
+def tfidf_weights(text):
+    Tfidf_vect_filter = pickle.load(open('ML_model/Tfidf_vect_filter', 'rb'))
+    Content_Tfidf = Tfidf_vect_filter.transform([text])
+    df_tfidf= pd.DataFrame(Content_Tfidf.T.todense(), index=Tfidf_vect_filter.get_feature_names(), columns=["Tfidf Weights"])
+    return ' '.join(df_tfidf.sort_values(by=["Tfidf Weights"],ascending=False)[:40].index)  
 
-def prediction(text,maxlen):
+def prediction(text,file):
     #inp = [perform_preprocessing(x) for x in inp]
     #inp_token = tokenizer.texts_to_sequences(inp)
-    inp = [perform_preprocessing(text)]
-    inp_token = tokenizer.texts_to_sequences(inp)
-    inp_token = sequence.pad_sequences(inp_token, padding='post', maxlen=maxlen)
-    out = final_model.predict(inp_token)
-    predicted_label = numpy.argmax(out)
-    return predicted_label
+    text = perform_preprocessing(text)
+    text_vectorized=Tfidf_vect.transform([text])
+    prediction_SVM = final_model.predict(text_vectorized.toarray())
+    print('Confidence Score: ',final_model.predict_proba(text_vectorized.toarray()))
+    print(f"Prediction {file}: ",Encoder.inverse_transform(prediction_SVM)[0])
+    return Encoder.inverse_transform(prediction_SVM)[0]
 
 class Start(View):
     def get(self, request):
@@ -375,7 +387,9 @@ class Index(View):
                     continue
                 if i == 'doctype':
                    doctype = request.POST['doctype']
-           
+            #     if i == 'savefiles':
+            #         savefiles = request.POST['savefiles']
+            # print(savefiles)
         #Recieving the uploaded file and saving it in the Bucket
             fileobj=request.FILES['file1'] 
             fs=FileSystemStorage()
@@ -401,7 +415,7 @@ class Index(View):
                     fullText.append(para.text)
                 text = '\n'.join(fullText)
             
-            label = class_dict.get(str(prediction(text,maxlen)))
+            label = str(prediction(text,fileobj.name))
         
             typeof = 0
             typeof = dic_typeof[typeof]
